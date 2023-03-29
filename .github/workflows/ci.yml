@@ -126,7 +126,7 @@ jobs:
       with:
         use-cross: ${{ matrix.job.use-cross }}
         command: build
-        args: --locked --release --target=${{ matrix.job.target }}
+        args: --release --target=${{ matrix.job.target }}
 
     # - name: Strip debug information from executable
     #   id: strip
@@ -178,7 +178,7 @@ jobs:
       with:
         use-cross: ${{ matrix.job.use-cross }}
         command: build
-        args: --locked --tests --target=${{ matrix.job.target }}        
+        args: --tests --target=${{ matrix.job.target }}        
 
     # - name: Run tests
     #   uses: actions-rs/cargo@v1
