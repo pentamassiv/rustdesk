@@ -1,6 +1,6 @@
 use crate::uinput::service::map_key;
 use dbus::{blocking::SyncConnection, Path};
-use enigo::{Key, KeyboardControllable, MouseButton, MouseControllable};
+use enigo::{Button, Key, KeyboardControllable, MouseControllable};
 use hbb_common::ResultType;
 use scrap::wayland::pipewire::{get_portal, PwStreamInfo};
 use scrap::wayland::remote_desktop_portal::OrgFreedesktopPortalRemoteDesktop as remote_desktop_portal;
@@ -158,14 +158,14 @@ pub mod client {
                 y,
             );
         }
-        fn mouse_down(&mut self, button: MouseButton) -> enigo::ResultType {
+        fn mouse_down(&mut self, button: Button) -> enigo::ResultType {
             handle_mouse(true, button, self.conn.clone(), &self.session);
             Ok(())
         }
-        fn mouse_up(&mut self, button: MouseButton) {
+        fn mouse_up(&mut self, button: Button) {
             handle_mouse(false, button, self.conn.clone(), &self.session);
         }
-        fn mouse_click(&mut self, button: MouseButton) {
+        fn mouse_click(&mut self, button: Button) {
             handle_mouse(true, button, self.conn.clone(), &self.session);
             handle_mouse(false, button, self.conn.clone(), &self.session);
         }
@@ -250,15 +250,15 @@ pub mod client {
 
     fn handle_mouse(
         down: bool,
-        button: MouseButton,
+        button: Button,
         conn: Arc<SyncConnection>,
         session: &Path<'static>,
     ) {
         let portal = get_portal(&conn);
         let but_key = match button {
-            MouseButton::Left => EVDEV_MOUSE_LEFT,
-            MouseButton::Right => EVDEV_MOUSE_RIGHT,
-            MouseButton::Middle => EVDEV_MOUSE_MIDDLE,
+            Button::Left => EVDEV_MOUSE_LEFT,
+            Button::Right => EVDEV_MOUSE_RIGHT,
+            Button::Middle => EVDEV_MOUSE_MIDDLE,
             _ => {
                 return;
             }

@@ -150,9 +150,9 @@ pub enum DataKeyboardResponse {
 pub enum DataMouse {
     MoveTo(i32, i32),
     MoveRelative(i32, i32),
-    Down(enigo::MouseButton),
-    Up(enigo::MouseButton),
-    Click(enigo::MouseButton),
+    Down(enigo::Button),
+    Up(enigo::Button),
+    Click(enigo::Button),
     ScrollX(i32),
     ScrollY(i32),
     Refresh,

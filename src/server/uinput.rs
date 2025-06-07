@@ -1,5 +1,5 @@
 use crate::ipc::{self, new_listener, Connection, Data, DataKeyboard, DataMouse};
-use enigo::{Key, KeyboardControllable, MouseButton, MouseControllable};
+use enigo::{Button, Key, KeyboardControllable, MouseControllable};
 use evdev::{
     uinput::{VirtualDevice, VirtualDeviceBuilder},
     AttributeSet, EventType, InputEvent,
@@ -143,14 +143,14 @@ pub mod client {
             allow_err!(self.send(Data::Mouse(DataMouse::MoveRelative(x, y))));
         }
         // TODO: handle error???
-        fn mouse_down(&mut self, button: MouseButton) -> enigo::ResultType {
+        fn mouse_down(&mut self, button: Button) -> enigo::ResultType {
             allow_err!(self.send(Data::Mouse(DataMouse::Down(button))));
             Ok(())
         }
-        fn mouse_up(&mut self, button: MouseButton) {
+        fn mouse_up(&mut self, button: Button) {
             allow_err!(self.send(Data::Mouse(DataMouse::Up(button))));
         }
-        fn mouse_click(&mut self, button: MouseButton) {
+        fn mouse_click(&mut self, button: Button) {
             allow_err!(self.send(Data::Mouse(DataMouse::Click(button))));
         }
         fn mouse_scroll_x(&mut self, length: i32) {
@@ -522,9 +522,9 @@ pub mod service {
             }
             DataMouse::Down(button) => {
                 let btn = match button {
-                    enigo::MouseButton::Left => mouce::MouseButton::Left,
-                    enigo::MouseButton::Middle => mouce::MouseButton::Middle,
-                    enigo::MouseButton::Right => mouce::MouseButton::Right,
+                    enigo::Button::Left => mouce::MouseButton::Left,
+                    enigo::Button::Middle => mouce::MouseButton::Middle,
+                    enigo::Button::Right => mouce::MouseButton::Right,
                     _ => {
                         return;
                     }
@@ -533,9 +533,9 @@ pub mod service {
             }
             DataMouse::Up(button) => {
                 let btn = match button {
-                    enigo::MouseButton::Left => mouce::MouseButton::Left,
-                    enigo::MouseButton::Middle => mouce::MouseButton::Middle,
-                    enigo::MouseButton::Right => mouce::MouseButton::Right,
+                    enigo::Button::Left => mouce::MouseButton::Left,
+                    enigo::Button::Middle => mouce::MouseButton::Middle,
+                    enigo::Button::Right => mouce::MouseButton::Right,
                     _ => {
                         return;
                     }
@@ -544,9 +544,9 @@ pub mod service {
             }
             DataMouse::Click(button) => {
                 let btn = match button {
-                    enigo::MouseButton::Left => mouce::MouseButton::Left,
-                    enigo::MouseButton::Middle => mouce::MouseButton::Middle,
-                    enigo::MouseButton::Right => mouce::MouseButton::Right,
+                    enigo::Button::Left => mouce::MouseButton::Left,
+                    enigo::Button::Middle => mouce::MouseButton::Middle,
+                    enigo::Button::Right => mouce::MouseButton::Right,
                     _ => {
                         return;
                     }

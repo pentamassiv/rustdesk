@@ -6,7 +6,7 @@ use crate::common::is_server;
 use crate::input::*;
 #[cfg(target_os = "macos")]
 use dispatch::Queue;
-use enigo::{Enigo, Key, KeyboardControllable, MouseButton, MouseControllable};
+use enigo::{Button, Enigo, Key, KeyboardControllable, MouseControllable};
 use hbb_common::{
     get_time,
     message_proto::{pointer_device_event::Union::TouchEvent, touch_event::Union::ScaleUpdate},
@@ -1029,37 +1029,37 @@ pub fn handle_mouse_(evt: &MouseEvent, conn: i32) {
         }
         MOUSE_TYPE_DOWN => match buttons {
             MOUSE_BUTTON_LEFT => {
-                allow_err!(en.mouse_down(MouseButton::Left));
+                allow_err!(en.mouse_down(Button::Left));
             }
             MOUSE_BUTTON_RIGHT => {
-                allow_err!(en.mouse_down(MouseButton::Right));
+                allow_err!(en.mouse_down(Button::Right));
             }
             MOUSE_BUTTON_WHEEL => {
-                allow_err!(en.mouse_down(MouseButton::Middle));
+                allow_err!(en.mouse_down(Button::Middle));
             }
             MOUSE_BUTTON_BACK => {
-                allow_err!(en.mouse_down(MouseButton::Back));
+                allow_err!(en.mouse_down(Button::Back));
             }
             MOUSE_BUTTON_FORWARD => {
-                allow_err!(en.mouse_down(MouseButton::Forward));
+                allow_err!(en.mouse_down(Button::Forward));
             }
             _ => {}
         },
         MOUSE_TYPE_UP => match buttons {
             MOUSE_BUTTON_LEFT => {
-                en.mouse_up(MouseButton::Left);
+                en.mouse_up(Button::Left);
             }
             MOUSE_BUTTON_RIGHT => {
-                en.mouse_up(MouseButton::Right);
+                en.mouse_up(Button::Right);
             }
             MOUSE_BUTTON_WHEEL => {
-                en.mouse_up(MouseButton::Middle);
+                en.mouse_up(Button::Middle);
             }
             MOUSE_BUTTON_BACK => {
-                en.mouse_up(MouseButton::Back);
+                en.mouse_up(Button::Back);
             }
             MOUSE_BUTTON_FORWARD => {
-                en.mouse_up(MouseButton::Forward);
+                en.mouse_up(Button::Forward);
             }
             _ => {}
         },
