@@ -1,6 +1,6 @@
 use crate::uinput::service::map_key;
 use dbus::{blocking::SyncConnection, Path};
-use enigo::{Button, Key, KeyboardControllable, MouseControllable};
+use enigo::{Button, Key, KeyboardControllable, Mouse};
 use hbb_common::ResultType;
 use scrap::wayland::pipewire::{get_portal, PwStreamInfo};
 use scrap::wayland::remote_desktop_portal::OrgFreedesktopPortalRemoteDesktop as remote_desktop_portal;
@@ -108,7 +108,7 @@ pub mod client {
         }
     }
 
-    impl MouseControllable for RdpInputMouse {
+    impl Mouse for RdpInputMouse {
         fn as_any(&self) -> &dyn std::any::Any {
             self
         }
