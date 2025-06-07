@@ -6,7 +6,7 @@ use crate::common::is_server;
 use crate::input::*;
 #[cfg(target_os = "macos")]
 use dispatch::Queue;
-use enigo::{Button, Enigo, Key, KeyboardControllable, Mouse};
+use enigo::{Button, Enigo, Key, Keyboard, Mouse};
 use hbb_common::{
     get_time,
     message_proto::{pointer_device_event::Union::TouchEvent, touch_event::Union::ScaleUpdate},

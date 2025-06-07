@@ -1,5 +1,5 @@
 use crate::ipc::{self, new_listener, Connection, Data, DataKeyboard, DataMouse};
-use enigo::{Button, Key, KeyboardControllable, Mouse};
+use enigo::{Button, Key, Keyboard, Mouse};
 use evdev::{
     uinput::{VirtualDevice, VirtualDeviceBuilder},
     AttributeSet, EventType, InputEvent,
@@ -69,7 +69,7 @@ pub mod client {
         }
     }
 
-    impl KeyboardControllable for UInputKeyboard {
+    impl Keyboard for UInputKeyboard {
         fn as_any(&self) -> &dyn std::any::Any {
             self
         }

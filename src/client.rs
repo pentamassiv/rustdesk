@@ -166,7 +166,7 @@ const PUBLIC_SERVER: &str = "public";
 
 #[cfg(not(any(target_os = "android", target_os = "ios")))]
 pub fn get_key_state(key: enigo::Key) -> bool {
-    use enigo::KeyboardControllable;
+    use enigo::Keyboard;
     #[cfg(target_os = "macos")]
     if key == enigo::Key::NumLock {
         return true;
@@ -283,7 +283,9 @@ impl Client {
 
         if !key.is_empty() && !token.is_empty() {
             // mainly for the security of token
-            secure_tcp(&mut socket, key).await.map_err(|e| anyhow!("Failed to secure tcp: {}", e))?;
+            secure_tcp(&mut socket, key)
+                .await
+                .map_err(|e| anyhow!("Failed to secure tcp: {}", e))?;
         }
 
         let start = std::time::Instant::now();
