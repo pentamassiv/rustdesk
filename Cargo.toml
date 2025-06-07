@@ -91,7 +91,7 @@ ringbuf = "0.3"
 mac_address = "1.1"
 sciter-rs = { git = "https://github.com/rustdesk-org/rust-sciter", branch = "dyn" }
 sys-locale = "0.3"
-enigo = { path = "libs/enigo", features = [ "with_serde" ] }
+enigo = { git = "https://github.com/enigo-rs/enigo", features = [ "serde" ] }
 clipboard = { path = "libs/clipboard" }
 ctrlc = "3.2"
 # arboard = { version = "3.4", features = ["wayland-data-control"] }
@@ -185,7 +185,7 @@ jni = "0.21"
 android-wakelock = { git = "https://github.com/rustdesk-org/android-wakelock" }
 
 [workspace]
-members = ["libs/scrap", "libs/hbb_common", "libs/enigo", "libs/clipboard", "libs/virtual_display", "libs/virtual_display/dylib", "libs/portable", "libs/remote_printer"]
+members = ["libs/scrap", "libs/hbb_common", "libs/clipboard", "libs/virtual_display", "libs/virtual_display/dylib", "libs/portable", "libs/remote_printer"]
 exclude = ["vdi/host", "examples/custom_plugin"]
 
 [package.metadata.winres]
